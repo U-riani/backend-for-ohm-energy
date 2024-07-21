@@ -1,3 +1,5 @@
+const nodemailer = require("nodemailer");
+
 const emailController = async (req, res) => {
   const { name, companyName, email, countryCode, phoneNumber, comments } =
     req.body;

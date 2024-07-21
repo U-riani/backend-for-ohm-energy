@@ -92,19 +92,19 @@
 
 // // mycustomverificationtoken
 
-const express = require("express");
-const nodemailer = require("nodemailer");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-
 const emailRoutes = require("../routes/emailRoute");
 const webhookRoutes = require("../routes/webhookRoute");
+
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
 const port = 5000;
 
-app.use(bodyParser.json());
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/", emailRoutes);
 app.use("/", webhookRoutes);
