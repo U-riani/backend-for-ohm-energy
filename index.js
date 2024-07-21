@@ -1,7 +1,7 @@
-const express = require('express');
-const nodemailer = require('nodemailer');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const express = require("express");
+const nodemailer = require("nodemailer");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
 const port = 5000;
@@ -9,34 +9,45 @@ const port = 5000;
 app.use(bodyParser.json());
 app.use(cors());
 
-app.post('/send-email', (req, res) => {
-  const { name, companyName, email, countryCode, phoneNumber, comments } = req.body;
+app.post("/send-email", (req, res) => {
+  const { name, companyName, email, countryCode, phoneNumber, comments } =
+    req.body;
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: "gmail",
     auth: {
-      user: 'sandropapiashvili@gmail.com',
-      pass: 'gjpr lqtk yxdk pmsu' // Ensure this is correct
-    }
+      user: "sandropapiashvili@gmail.com",
+      pass: "gjpr lqtk yxdk pmsu", // Ensure this is correct
+    },
   });
 
   const mailOptions = {
     from: email,
-    to: 'sandropapiashvili@gmail.com',
-    subject: 'Contact Form Submission',
-    text: `Name: ${name}\nCompany Name: ${companyName}\nEmail: ${email}\nPhone Number: ${countryCode} ${phoneNumber}\nComments: ${comments}`
+    to: "sandropapiashvili@gmail.com",
+    subject: "Contact Form Submission",
+    text: `Name: ${name}\nCompany Name: ${companyName}\nEmail: ${email}\nPhone Number: ${countryCode} ${phoneNumber}\nComments: ${comments}`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.error('Error sending email:', error);
-      res.status(500).send('Error sending email'); // Correct way to send status code and message
+      console.error("Error sending email:", error);
+      res.status(500).send("Error sending email"); // Correct way to send status code and message
     } else {
-      console.log('Email sent:', info.response);
-      res.status(200).send('Email sent successfully'); // Correct way to send status code and message
+      console.log("Email sent:", info.response);
+      res.status(200).send("Email sent successfully"); // Correct way to send status code and message
     }
   });
 });
+
+
+app.get('/', (req, res) => {
+  console.log('sdsa')
+  res.status(200).json({ssad: 'sadas'})
+})
+
+app.get("/send-email", (req, res) => {
+  res.status(200).json({gela: 'data'})
+})
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
