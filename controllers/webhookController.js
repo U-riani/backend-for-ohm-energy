@@ -1,5 +1,5 @@
 const getWebhookController = async (req, res) => {
-  const VERIFY_TOKEN = "YOUR_VERIFY_TOKEN";
+  const VERIFY_TOKEN = 'myTokenthisis12'; // Ensure this matches what you set in Facebook Developer Console
 
   const mode = req.query["hub.mode"];
   const token = req.query["hub.verify_token"];
@@ -12,9 +12,10 @@ const getWebhookController = async (req, res) => {
     } else {
       res.sendStatus(403);
     }
+  } else {
+    res.sendStatus(400);
   }
 };
-
 
 // Handle webhook events
 const postWebhookController = async (req, res) => {
@@ -35,12 +36,11 @@ const postWebhookController = async (req, res) => {
 };
 
 const testGetWebhook = async (req, res) => {
-  res.status(200).json({test: 'getWebhook'})
-}
-
+  res.status(200).json({ test: "getWebhook" });
+};
 
 module.exports = {
-    postWebhookController,
-    getWebhookController,
-    testGetWebhook
-}
+  postWebhookController,
+  getWebhookController,
+  testGetWebhook,
+};
