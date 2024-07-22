@@ -9,7 +9,7 @@ const emailController = async (req, res) => {
     service: "gmail",
     auth: {
       user: process.env.COMPANY_EMAIL,
-      pass: process.env.EMAIL_PASS, // Ensure this is correct
+      pass: process.env.EMAIL_PASS, 
     },
   });
 
@@ -23,7 +23,7 @@ const emailController = async (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error("Error sending email:", error);
-      res.status(500).send("Error sending email"); // Correct way to send status code and message
+      res.status(500).send("Error sending email", error); 
     } else {
       console.log("Email sent:", info.response);
       res.status(200).send("Email sent successfully"); // Correct way to send status code and message
