@@ -1,3 +1,4 @@
+require('dotenv').config();
 const nodemailer = require("nodemailer");
 
 const emailController = async (req, res) => {
@@ -8,7 +9,7 @@ const emailController = async (req, res) => {
     service: "gmail",
     auth: {
       user: process.env.COMPANY_EMAIL,
-      pass: EMAIL_PASS, // Ensure this is correct
+      pass: process.env.EMAIL_PASS, // Ensure this is correct
     },
   });
 
