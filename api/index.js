@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 
 const emailRoutes = require("../routes/emailRoute");
 const webhookRoutes = require("../routes/webhookRoute");
