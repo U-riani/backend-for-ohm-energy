@@ -1,5 +1,5 @@
 const getWebhookController = async (req, res) => {
-  const VERIFY_TOKEN = 'myTokenthisis12'; // Ensure this matches what you set in Facebook Developer Console
+  const VERIFY_TOKEN = process.env.FACEBOOK_VERIFY_TOKEN; // Ensure this matches what you set in Facebook Developer Console
 
   const mode = req.query["hub.mode"];
   const token = req.query["hub.verify_token"];
