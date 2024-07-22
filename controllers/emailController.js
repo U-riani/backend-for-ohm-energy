@@ -7,14 +7,14 @@ const emailController = async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "sandropapiashvili@gmail.com",
-      pass: "gjpr lqtk yxdk pmsu", // Ensure this is correct
+      user: process.env.COMPANY_EMAIL,
+      pass: EMAIL_PASS, // Ensure this is correct
     },
   });
 
   const mailOptions = {
     from: email,
-    to: "sandropapiashvili@gmail.com",
+    to: process.env.COMPANY_EMAIL,
     subject: "Contact Form Submission",
     text: `Name: ${name}\nCompany Name: ${companyName}\nEmail: ${email}\nPhone Number: ${countryCode} ${phoneNumber}\nComments: ${comments}`,
   };
