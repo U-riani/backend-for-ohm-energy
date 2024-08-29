@@ -16,7 +16,7 @@ const emailController = async (req, res) => {
   const mailOptions = {
     from: email,
     to: process.env.COMPANY_EMAIL,
-    subject: "NEW MAIL FROM WEBSITE",
+    subject: "Contact Form Submission",
     text: `Name: ${name}\nCompany Name: ${companyName}\nEmail: ${email}\nPhone Number: ${countryCode} ${phoneNumber}\nComments: ${comments}`,
   };
 
