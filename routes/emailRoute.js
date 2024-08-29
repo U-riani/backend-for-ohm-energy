@@ -1,4 +1,5 @@
 const express = require("express");
+const express = require("express");
 const {emailController, testGetemail} = require("../controllers/emailController");
 
 const router = express.Router();

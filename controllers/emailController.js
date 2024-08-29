@@ -1,4 +1,3 @@
-require("dotenv").config();
 const nodemailer = require("nodemailer");
 
 const emailController = async (req, res) => {
@@ -8,14 +7,14 @@ const emailController = async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.COMPANY_EMAIL,
-      pass: process.env.EMAIL_PASS, // Ensure this is correct
+      user: "sandropapiashvili@gmail.com",
+      pass: "gjpr lqtk yxdk pmsu", // Ensure this is correct
     },
   });
 
   const mailOptions = {
     from: email,
-    to: process.env.COMPANY_EMAIL,
+    to: "sandropapiashvili@gmail.com",
     subject: "New Email from Website",
     text: `Name: ${name}\nCompany Name: ${companyName}\nEmail: ${email}\nPhone Number: ${countryCode} ${phoneNumber}\nComments: ${comments}`,
   };
