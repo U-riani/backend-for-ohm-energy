@@ -1,48 +1,37 @@
-require('dotenv').config();
+const nodemailer = require("nodemailer");
 
-const getWebhookController = async (req, res) => {
-  const VERIFY_TOKEN = process.env.FACEBOOK_VERIFY_TOKEN; // Ensure this matches what you set in Facebook Developer Console
+const emailController = async (req, res) => {
+  const { name, companyName, email, countryCode, phoneNumber, comments } =
+    req.body;
 
-  const mode = req.query["hub.mode"];
-  const token = req.query["hub.verify_token"];
-  const challenge = req.query["hub.challenge"];
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "sandropapiashvili@gmail.com",
+      pass: "gjpr lqtk yxdk pmsu", // Ensure this is correct
+    },
+  });
 
-  if (mode && token) {
-    if (mode === "subscribe" && token === VERIFY_TOKEN) {
-      console.log("WEBHOOK_VERIFIED");
-      res.status(200).send(challenge);
+  const mailOptions = {
+    from: email,
+    to: "sandropapiashvili@gmail.com",
+    subject: "New Email from Website",
+    text: `Name: ${name}\nCompany Name: ${companyName}\nEmail: ${email}\nPhone Number: ${countryCode} ${phoneNumber}\nComments: ${comments}`,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error("Error sending email:", error);
+      res.status(500).send("Error sending email"); // Correct way to send status code and message
     } else {
-      res.sendStatus(403);
+      console.log("Email sent:", info.response);
+      res.status(200).send("Email sent successfully"); // Correct way to send status code and message
     }
-  } else {
-    res.sendStatus(400);
-  }
+  });
 };
 
-// Handle webhook events
-const postWebhookController = async (req, res) => {
-  const body = req.body;
-
-  if (body.object === "page") {
-    body.entry.forEach(function (entry) {
-      const webhookEvent = entry.messaging[0];
-      console.log(webhookEvent);
-
-      // Handle the event
-    });
-
-    res.status(200).send("EVENT_RECEIVED");
-  } else {
-    res.sendStatus(404);
-  }
+const testGetemail = async (req, res) => {
+  res.status(200).json({ gela: "data" });
 };
 
-const testGetWebhook = async (req, res) => {
-  res.status(200).json({ test: "getWebhook" });
-};
-
-module.exports = {
-  postWebhookController,
-  getWebhookController,
-  testGetWebhook,
-};
+module.exports = { emailController, testGetemail };
