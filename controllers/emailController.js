@@ -9,8 +9,8 @@ const emailController = async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: EMAIL_PASSEMAIL_PASS, // Ensure this is correct
+      user: process.env.COMPANY_EMAIL,
+      pass: process.env.EMAIL_PASS, // Ensure this is correct
     },
   });
 
