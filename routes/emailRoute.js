@@ -1,15 +1,11 @@
 const express = require("express");
-const {
-  postWebhookController,
-  getWebhookController,
-  testGetWebhook,
-} = require("../controllers/webhookController");
+const express = require("express");
+const {emailController, testGetemail} = require("../controllers/emailController");
 
 const router = express.Router();
 
-router.post("/webhook", postWebhookController);
+router.post("/send-email", emailController);
 
-router.get("/webhook", getWebhookController);
-router.get("/test-webhook", testGetWebhook);
+router.get('/send-email', testGetemail)
 
 module.exports = router;
