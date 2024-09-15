@@ -41,7 +41,7 @@ const emailController = async (req, res) => {
         .json({ message: "Error sending email", error: error.toString() });
     } else {
       console.log("Email sent:", info.response);
-      res.status(200).send(`${mailOptions}`);
+      res.status(200).send(`Email sent successfully`)
     }
   });
 };
