@@ -29,7 +29,7 @@ const emailController = async (req, res) => {
     from: email,
     to: "sandropapiashvili@gmail.com",
     subject: "New Email from Website",
-    text: `Name: ${name}\nCompany Name: ${companyName}\nEmail: ${email}\nPhone Number: ${countryCode} ${phoneNumber}\nComments: ${comments}\nStation Info\n ---------\n For: - ${personCompany}\nPanels Place: - ${panelsPlace}\nExpense Per Month: - ${expense}\nStation Power: - ${stationPower}\nStation Price: - ${stationPrice}`,
+    text: `Name: ${name}\nCompany Name: ${companyName}\nEmail: ${email}\nPhone Number: ${countryCode} ${phoneNumber}\nComments: ${comments}\nStation Info\n ---------\nFor: - ${personCompany}\nPanels Place: - ${panelsPlace}\nExpense Per Month: - ${expense}\nStation Power: - ${stationPower}\nStation Price: - ${stationPrice}`,
     
   };
 
