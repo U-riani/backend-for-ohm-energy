@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const emailRoutes = require("../routes/emailRoute");
 const webhookRoutes = require("../routes/webhookRoute");
+const priceRouter = require("../routes/priceRoute");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/", emailRoutes);
 app.use("/", webhookRoutes);
+app.use('/', priceRouter)
 
 app.get("/", (req, res) => {
   console.log("sdsa");
