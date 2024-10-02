@@ -8,7 +8,7 @@ const priceController = async (req, res) => {
     panelsPlace,
     expense,
     stationPower,
-    stationPrice,
+    stationArea,
   } = req.body;
 
   const transporter = nodemailer.createTransport({
@@ -23,7 +23,7 @@ const priceController = async (req, res) => {
     from: email,
     to: "sandropapiashvili@gmail.com",
     subject: "OHM energy calculate price",
-    text: `Emal: ${email}\n Phone Number: ${phoneNumber}\n\n --info--\nFor: - ${personCompany}\nPanels Place: - ${panelsPlace}\nExpense Per Month: - ${expense}\nStation Power: - ${stationPower}`,
+    text: `Emal: ${email}\n Phone Number: ${phoneNumber}\n\n --info--\nFor: - ${personCompany}\nPanels Place: - ${panelsPlace}\nExpense Per Month: - ${expense}\nStation Power: - ${stationPower}\nRequire Area: - ${stationArea} `,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
