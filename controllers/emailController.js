@@ -17,22 +17,28 @@ const emailController = async (req, res) => {
     stationArea,
   } = req.body;
 
+  // Set up the transporter using Outlook SMTP settings
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.office365.com",
+    port: 587, // Port 587 is commonly used for TLS
+    secure: false, // Set to false for TLS
     auth: {
-      user: "sandropapiashvili@gmail.com",
-      pass: "gjpr lqtk yxdk pmsu", // Ensure this is correct
+      user: 'sandro.papiashvili12@outlook.com', // Use environment variables to secure your credentials
+      pass: 'Microlab1', // Password or app-specific password
     },
+    tls: {
+      ciphers: 'SSLv3'
+    }
   });
 
   const mailOptions = {
     from: email,
-    to: "sandropapiashvili@gmail.com",
+    to: "sandropapiashvili@gmail.com", // Replace with your recipient email
     subject: "New Email from Website",
     text: `Name: ${name}\nCompany Name: ${companyName}\nEmail: ${email}\nPhone Number: ${countryCode} ${phoneNumber}\nComments: ${comments}\nStation Info\n ---------\nFor: - ${personCompany}\nPanels Place: - ${panelsPlace}\nExpense Per Month: - ${expense}\nStation Power: - ${stationPower}\nStation Require Area: - ${stationArea} m²`,
-    
   };
 
+  // Send the email
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error("Error sending email:", error);
@@ -41,7 +47,7 @@ const emailController = async (req, res) => {
         .json({ message: "Error sending email", error: error.toString() });
     } else {
       console.log("Email sent:", info.response);
-      res.status(200).send(`Email sent successfully`)
+      res.status(200).send(`Email sent successfully`);
     }
   });
 };
