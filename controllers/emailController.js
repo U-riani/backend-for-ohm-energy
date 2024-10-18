@@ -33,7 +33,7 @@ const emailController = async (req, res) => {
 
   const mailOptions = {
     from: email,
-    to: "sandropapiashvili@gmail.com", // Replace with your recipient email
+    to: "sanpro.papiashvili1997@outlook.com", // Replace with your recipient email
     subject: "New Email from Website",
     text: `Name: ${name}\nCompany Name: ${companyName}\nEmail: ${email}\nPhone Number: ${countryCode} ${phoneNumber}\nComments: ${comments}\nStation Info\n ---------\nFor: - ${personCompany}\nPanels Place: - ${panelsPlace}\nExpense Per Month: - ${expense}\nStation Power: - ${stationPower}\nStation Require Area: - ${stationArea} m²`,
   };
