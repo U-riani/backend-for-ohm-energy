@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 const nodemailer = require("nodemailer");
 
 const emailController = async (req, res) => {
@@ -16,24 +17,24 @@ const emailController = async (req, res) => {
     stationArea,
   } = req.body;
 
-  // Create the Outlook SMTP transporter
+  // Set up the transporter using Outlook SMTP settings
   const transporter = nodemailer.createTransport({
-    host: "smtp.office365.com",
-    port: 587, // TLS port
-    secure: false, // Use STARTTLS
+    host: "smtp.office365.com", // Outlook SMTP server
+    port: 587, // Port 587 for TLS
+    secure: false, // Use TLS (not SSL)
     auth: {
-      user: "sanpro.papiashvili1997@outlook.com", // Authenticated email
-      pass: "tdkgaqfaigctxgxa", // App-specific password
+      user: 'sanpro.papiashvili1997@outlook.com', // Your email
+      pass: 'tdkgaqfaigctxgxa', // Your password or app password
     },
     tls: {
-      ciphers: "SSLv3", // Encryption protocol
+      rejectUnauthorized: false, // Avoid certificate issues
     },
   });
 
   const mailOptions = {
-    from: `"${name}" <${email}>`, // User's email as the sender
-    to: "sanpro.papiashvili1997@outlook.com", // Your email
-    subject: "New Inquiry from Website",
+    from: `"${name}" <${email}>`, // User's name and email
+    to: "sanpro.papiashvili1997@outlook.com", // Recipient email
+    subject: "New Email from Website",
     text: `
       Name: ${name}
       Company Name: ${companyName}
@@ -49,25 +50,21 @@ const emailController = async (req, res) => {
       Station Power: ${stationPower}
       Station Required Area: ${stationArea} m²
     `,
-    replyTo: email, // Allows you to reply directly to the user's email
   };
 
+  // Send the email
   try {
-    // Send the email using the transporter
     const info = await transporter.sendMail(mailOptions);
     console.log("Email sent:", info.response);
     res.status(200).send("Email sent successfully");
   } catch (error) {
     console.error("Error sending email:", error);
-    res
-      .status(500)
-      .json({ message: "Error sending email", error: error.toString() });
+    res.status(500).json({ message: "Error sending email", error: error.toString() });
   }
 };
 
-// A test endpoint to verify your backend setup
 const testGetemail = async (req, res) => {
-  res.status(200).json({ message: "Backend is working!" });
+  res.status(200).json({ gela: "data" });
 };
 
 module.exports = { emailController, testGetemail };
