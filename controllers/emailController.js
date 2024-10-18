@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 const nodemailer = require("nodemailer");
 
 const emailController = async (req, res) => {
@@ -17,23 +16,22 @@ const emailController = async (req, res) => {
     stationArea,
   } = req.body;
 
-  // Set up the transporter using Outlook SMTP settings
   const transporter = nodemailer.createTransport({
-    host: "smtp.office365.com", // Outlook SMTP server
-    port: 587, // Port 587 for TLS
-    secure: false, // Use TLS (not SSL)
+    host: "smtp.office365.com",
+    port: 587, // TLS port
+    secure: false, // Use TLS
     auth: {
-      user: 'sanpro.papiashvili1997@outlook.com', // Your email
-      pass: 'tdkgaqfaigctxgxa', // Your password or app password
+      user: "sanpro.papiashvili1997@outlook.com",
+      pass: "tdkgaqfaigctxgxa", // Use app password if 2FA is enabled
     },
     tls: {
-      rejectUnauthorized: false, // Avoid certificate issues
+      rejectUnauthorized: false, // Avoid self-signed certificate issues
     },
   });
 
   const mailOptions = {
-    from: `"${name}" <${email}>`, // User's name and email
-    to: "sanpro.papiashvili1997@outlook.com", // Recipient email
+    from: `"${name}" <${email}>`,
+    to: "sanpro.papiashvili1997@outlook.com",
     subject: "New Email from Website",
     text: `
       Name: ${name}
@@ -50,9 +48,9 @@ const emailController = async (req, res) => {
       Station Power: ${stationPower}
       Station Required Area: ${stationArea} m²
     `,
+    replyTo: email,
   };
 
-  // Send the email
   try {
     const info = await transporter.sendMail(mailOptions);
     console.log("Email sent:", info.response);
@@ -63,8 +61,4 @@ const emailController = async (req, res) => {
   }
 };
 
-const testGetemail = async (req, res) => {
-  res.status(200).json({ gela: "data" });
-};
-
-module.exports = { emailController, testGetemail };
+module.exports = { emailController };
