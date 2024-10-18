@@ -23,7 +23,7 @@ const emailController = async (req, res) => {
     port: 587, // Port 587 is commonly used for TLS
     secure: false, // Set to false for TLS
     auth: {
-      user: 'ohmenergygeorgia@gmail.com', // Use environment variables to secure your credentials
+      user: 'ohmenergygeorgia@outlook.com', // Use environment variables to secure your credentials
       pass: 'njoy updi iron bzju', // Password or app-specific password
     },
     tls: {
