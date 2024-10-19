@@ -19,21 +19,16 @@ const emailController = async (req, res) => {
 
   // Set up the transporter using Outlook SMTP settings
   const transporter = nodemailer.createTransport({
-    host: "smtp.office365.com",
-    port: 587, // Port 587 is commonly used for TLS
-    secure: false, // Set to false for TLS
+    service: "gmail",
     auth: {
-      user: 'sandro.papiashvili12@outlook.com', // Use environment variables to secure your credentials
-      pass: 'Microlab1', // Password or app-specific password
+      user: "sanpro.papiashvili@outlook.com",
+      pass: "tdkgaqfaigctxgxa",
     },
-    tls: {
-      ciphers: 'SSLv3'
-    }
   });
 
   const mailOptions = {
     from: email,
-    to: "sandropapiashvili@gmail.com", // Replace with your recipient email
+    to: "sanpro.papiashvili@outlook.com", // Replace with your recipient email
     subject: "New Email from Website",
     text: `Name: ${name}\nCompany Name: ${companyName}\nEmail: ${email}\nPhone Number: ${countryCode} ${phoneNumber}\nComments: ${comments}\nStation Info\n ---------\nFor: - ${personCompany}\nPanels Place: - ${panelsPlace}\nExpense Per Month: - ${expense}\nStation Power: - ${stationPower}\nStation Require Area: - ${stationArea} m²`,
   };
