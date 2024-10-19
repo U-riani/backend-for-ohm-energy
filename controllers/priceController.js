@@ -21,7 +21,7 @@ const priceController = async (req, res) => {
 
   const mailOptions = {
     from: email,
-    to: "sandropapiashvili@gmail.com",
+    to: "sanpro.papiashvili1997@outlook.com",
     subject: "OHM energy calculate price",
     text: `Emal: ${email}\n Phone Number: ${phoneNumber}\n\n --info--\nFor: - ${personCompany}\nPanels Place: - ${panelsPlace}\nExpense Per Month: - ${expense}\nStation Power: - ${stationPower}\nRequire Area: - ${stationArea} `,
   };
