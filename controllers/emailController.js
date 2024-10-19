@@ -21,15 +21,15 @@ const emailController = async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "sandropapiashvili@gmail.com",
-      pass: "gjpr lqtk yxdk pmsu",
+      user: "ohmenergygeorgia@gmail.com",
+      pass: "njoy updi iron bzju",
     },
   });
 
   const mailOptions = {
     from: email,
-    to: "sanpro.papiashvili1997@outlook.com", // Replace with your recipient email
-    subject: "New Email from Website",
+    to: "ohmenergygeorgia@gmail.com", // Replace with your recipient email
+    subject: "OHM ENERGY WEBSITE",
     text: `Name: ${name}\nCompany Name: ${companyName}\nEmail: ${email}\nPhone Number: ${countryCode} ${phoneNumber}\nComments: ${comments}\nStation Info\n ---------\nFor: - ${personCompany}\nPanels Place: - ${panelsPlace}\nExpense Per Month: - ${expense}\nStation Power: - ${stationPower}\nStation Require Area: - ${stationArea} m²`,
   };
 

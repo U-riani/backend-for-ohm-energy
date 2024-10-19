@@ -14,14 +14,14 @@ const priceController = async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "sandropapiashvili@gmail.com",
-      pass: "gjpr lqtk yxdk pmsu",
+      user: "ohmenergygeorgia@gmail.com",
+      pass: "njoy updi iron bzju",
     },
   });
 
   const mailOptions = {
     from: email,
-    to: "sanpro.papiashvili1997@outlook.com",
+    to: "ohmenergygeorgia@gmail.com",
     subject: "OHM energy calculate price",
     text: `Emal: ${email}\n Phone Number: ${phoneNumber}\n\n --info--\nFor: - ${personCompany}\nPanels Place: - ${panelsPlace}\nExpense Per Month: - ${expense}\nStation Power: - ${stationPower}\nRequire Area: - ${stationArea} `,
   };
